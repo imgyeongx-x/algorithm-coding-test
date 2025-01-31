@@ -18,31 +18,18 @@ int main()
         q.push(i+1);
     }
     
-    int k = 0;
-    
-    int result[500000];
-    int rIndex = 0;
-    
-    while (!q.empty()) {
-        if (k == K - 1) {
-            result[rIndex] = q.front();
-            q.pop();
-            rIndex++;
-            
-            k = 0;
-        }
-        else {
-            k++;
-            int tmp = q.front();
-            q.push(tmp);
-            q.pop();
-        }
-    }
-    
     cout<<"<";
-    for (int i = 0; i < rIndex; i++) {
-        cout << result[i];
-        if (i != rIndex - 1)
+    while (!q.empty()) {
+        
+        for (int i = 1; i < K; i++)
+        {    
+            q.push(q.front());
+            q.pop();
+        }
+        cout << q.front();
+        q.pop();
+        
+        if (!q.empty())
             cout << ", ";
     }
     cout << ">";
