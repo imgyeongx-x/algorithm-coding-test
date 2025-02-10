@@ -15,24 +15,15 @@ int solution(vector<int> schedules, vector<vector<int>> timelogs, int startday) 
         for (auto t : timelogs[i]){
             if (startday == 6 || startday == 7) {
                 startday++;
-                if (startday == 8)
-                    startday -= 7;
+                if (startday == 8) startday -= 7;
                 continue;
             }
-            else {
-                if (t > schedules[i]){
-                    late = true;
-                }
-                startday++;
+            if (t > schedules[i]){
+                late = true;
             }
-        }
-        
-        if (late == true)
-        {
-            answer--;
-        }
-        late = false;
+            startday++;
+        }        
+        if (late == true) answer--;
     }
-    
     return answer;
 }
