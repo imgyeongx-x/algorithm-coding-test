@@ -1,17 +1,13 @@
+from itertools import permutations
+
 N, M = map(int, input().split())
+li = []
 
-visited = [False] * N
-S = [0] * M
+for i in range(1, N+1):
+  li.append(i)
 
-def backtrack(length):
-  if length == M:
-    print(" ".join(str(i+1) for i in S))
-    return
-  for i in range(0, N):
-    if visited[i] == False:
-      visited[i] = True
-      S[length] = i
-      backtrack(length+1)
-      visited[i] = False
-
-backtrack(0)
+for i in permutations(li, M):
+  s = i
+  for j in s:
+    print(j, end=" ")
+  print()
