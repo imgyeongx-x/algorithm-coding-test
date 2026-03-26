@@ -1,10 +1,10 @@
 N = int(input())
 
 li = list(map(int, input().split()))
-lis = [float("-inf")]
-total = []
+lis = [li[0]]
+total = [[li[0], 0]]
 
-for i in range(0, N):
+for i in range(1, N):
   if lis[-1] < li[i]:
     lis.append(li[i])
     total.append([li[i], len(lis)-1])
@@ -19,13 +19,12 @@ for i in range(0, N):
         ed = mid
     lis[ed] = li[i]
     total.append([li[i], ed])
-
-res = [0] * (len(lis)-1)
-index = len(lis) - 1
+res = [0] * (len(lis))
+index = len(lis) -1
 
 for i in range(N-1, -1, -1):
   if index == total[i][1]:
-    res[total[i][1]-1] = total[i][0]
+    res[total[i][1]] = total[i][0]
     index -= 1
     
 print(len(res))
