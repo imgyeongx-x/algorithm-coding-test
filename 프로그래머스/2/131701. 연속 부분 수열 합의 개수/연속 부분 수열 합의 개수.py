@@ -2,14 +2,15 @@ from itertools import combinations
 
 def solution(elements):
     answer = 0
-    ele = elements + elements
-    li = []
+    ll = len(elements)
+    s = set()
     
-    for i in range(1, len(elements)+1):
-        for j in range(len(ele)-i):
-            s = sum(ele[j:j+i])
-            li.append(s)
-    li = set(li)
-    answer = len(li)
+    for i in range(ll):
+        ssum = elements[i]
+        s.add(ssum)
+        for j in range(i+1, i+ll):
+            ssum += elements[j % ll]
+            s.add(ssum)
+    answer = len(s)
     
     return answer
